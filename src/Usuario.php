@@ -12,7 +12,44 @@ class Usuario{
 
     public function __construct(){
         $this->conexao = Banco::conecta();        
-    }
+    }    
+
+   /* Método para rotinas de CRUD no banco */
+
+   //INSERT DE USUARIO
+   public function inserir():void {
+    $sql = "INSERT INTO usuario(nome, email, senha, tipo)
+           VALUES(:nome, :email, :senha, :tipo)";
+
+           try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":email", $this->email, PDO::PARAM_STR);
+            $consulta->bindValue(":senha", $this->senha, PDO::PARAM_STR);
+            $consulta->bindValue(":tipo", $this->tipo, PDO::PARAM_STR);
+            $consulta->execute();
+           }catch (Exception $erro){
+            die ("Erro ao inserir usuário:" . $erro->getMessage());
+           }
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //ID
     public function getId(): int
