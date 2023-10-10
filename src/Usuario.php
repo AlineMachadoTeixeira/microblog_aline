@@ -3,6 +3,8 @@ namespace Microblog;
 use PDO, Exception;
 
 class Usuario{
+    //Lembra de olhar o diagrama de classes.dia esse $ estão lá
+ 
     private int $id;
     private string $nome;
     private string $email;
