@@ -32,12 +32,28 @@ class Usuario{
             die ("Erro ao inserir usuário:" . $erro->getMessage());
            }
 
-   }
+   } //Fim inserir
 
    /* Método para codificar e comparção da senha */
    public function codificaSenha(string $senha):string {
     return password_hash($senha, PASSWORD_DEFAULT);
    }
+
+   //Select de usuarios
+   public function listar():array {
+    $sql = "SELECT * FROM usuarios ORDER BY nome";
+
+    try{
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->execute();
+        $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }catch (Exception $erro){
+     die ("Erro ao listar usuários:" . $erro->getMessage());
+    }
+    return $resultado;
+   }//Fim do listar
+
+
 
 
 
