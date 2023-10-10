@@ -1,9 +1,12 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
 use Microblog\Usuario;
+use Microblog\Utilitarios;
 //require_once "../vendor/autoload.php"; Não colocamos, pois já esta no cabeçalho 
 $usuario = new Usuario;
 $listaDeUsuarios = $usuario->listar(); 
+
+
 ?>
 
 
