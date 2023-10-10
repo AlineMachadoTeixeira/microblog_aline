@@ -34,6 +34,11 @@ class Usuario{
 
    }
 
+   /* Método para codificar e comparção da senha */
+   public function codificaSenha(string $senha):string {
+    return password_hash($senha, PASSWORD_DEFAULT);
+   }
+
 
 
 
@@ -58,7 +63,7 @@ class Usuario{
     }    
     public function setId(int $id): self
     {
-        $this->id = $id;
+        $this->id = $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);;
 
         return $this;
     }
@@ -70,7 +75,7 @@ class Usuario{
     }    
     public function setNome(string $nome): self
     {
-        $this->nome = $nome;
+        $this->nome = $this->nome = filter_var($nome, FILTER_SANITIZE_SPECIAL_CHARS);
 
         return $this;
     }
@@ -82,7 +87,7 @@ class Usuario{
     }    
     public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = $this->email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
 
         return $this;
     }
@@ -94,7 +99,7 @@ class Usuario{
     }    
     public function setSenha(string $senha): self
     {
-        $this->senha = $senha;
+        $this->senha = $this->senha = filter_var($senha, FILTER_SANITIZE_SPECIAL_CHARS);
 
         return $this;
     }
@@ -106,7 +111,7 @@ class Usuario{
     }
     public function setTipo(string $tipo): self
     {
-        $this->tipo = $tipo;
+        $this->tipo = $this->tipo = filter_var($tipo, FILTER_SANITIZE_SPECIAL_CHARS);
 
         return $this;
     }
