@@ -18,7 +18,7 @@ class Usuario{
 
    //INSERT DE USUARIO
    public function inserir():void {
-    $sql = "INSERT INTO usuario(nome, email, senha, tipo)
+    $sql = "INSERT INTO usuarios(nome, email, senha, tipo)
            VALUES(:nome, :email, :senha, :tipo)";
 
            try{
