@@ -73,6 +73,11 @@ class Usuario{
     return $resultado;
    }
 
+   //
+   public function atualizarUsuiario():void {
+
+   }
+
 
 
 
