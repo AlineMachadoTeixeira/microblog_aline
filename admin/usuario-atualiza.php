@@ -17,6 +17,18 @@ if(isset($_POST['atualizar'])){
 	$usuario->setTipo($_POST['tipo']);
 	
 	//$usuario->setSenha($usuario->codificaSenha($_POST["senha"]));
+	/* Algoritmo geral para tratamento da senha */
+
+	/* Se o campo senha no formulário estiver vazio sgnifica que o usuario NÃO MUDOU A SENHA */
+	if(empty($_POST['senha'])){
+		/* Portanto, simplesmente repassamos a senha já existente no banco ($dados['senha']) para o objeto através do setSenha, sem qualquer alteração. */
+		$usuario->setSenha($dados['senha']);
+	}else{
+		/* Caso contrário, se o usuario digitou alguma coisa no campo, precisamos verificar o que foi digitado.  */
+		$usuario->setSenha(
+			$usuario->verificarSenha($_POST['senha'], $dados['senha'])
+		);
+	}
 
 	$usuario->atualizar();
 	header("location:usuarios.php");

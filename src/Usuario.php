@@ -40,6 +40,18 @@ class Usuario{
    public function codificaSenha(string $senha):string {
     return password_hash($senha, PASSWORD_DEFAULT);
    }
+   
+   public function verificarSenha(string $senhaFormulario, string $senhaBanco):string {
+     /* Usamos a função password_verify para COMPARAR as duas senha: a difitada no formulário e a existente no banco de dados  */
+    if(password_verify($senhaFormulario, $senhaBanco)){
+        /* Se forem IGAUIS, mantemos a senha já existente, sem qualquer modificação */
+        return $senhaBanco;
+        
+    } else{
+        /* Se forem DIFERENTES, então a nova senha (ou seja que foi digitada no formulario ) DEVE ser codificada. */
+        return $this->codificaSenha($senhaFormulario);
+    }
+   }
 
    //Select de usuários listar
    public function listar():array {
@@ -81,8 +93,12 @@ class Usuario{
 
    //UPDATE DE Usuario 
    public function atualizar():void{
-    $sql = "UPDATE usuario SET
-            nome = :nome, email = :email, senha = :senha, tipo = :tipo,  WHERE id = :id";
+    $sql = "UPDATE usuarios SET
+            nome = :nome, 
+            email = :email, 
+            senha = :senha, 
+            tipo = :tipo  
+            WHERE id = :id";
 
         try{
             $consulta = $this->conexao->prepare($sql);
@@ -99,7 +115,7 @@ class Usuario{
         die ("Erro ao atualizar usuário" . $erro->getMessage());
         }
 
-        return $resultado;
+        
 
    }
 
