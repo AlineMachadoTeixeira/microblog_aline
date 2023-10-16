@@ -8,7 +8,7 @@ $usuario = new Usuario;
 $usuario->setId($_GET['id']);
 $dados = $usuario->listarUm();
 
-
+/* Script para atualização */
 if(isset($_POST['atualizar'])){	
 	$usuario->setNome($_POST['nome']);
 
@@ -16,9 +16,9 @@ if(isset($_POST['atualizar'])){
 
 	$usuario->setTipo($_POST['tipo']);
 	
-	$usuario->setSenha($usuario->codificaSenha($_POST["senha"]));
+	//$usuario->setSenha($usuario->codificaSenha($_POST["senha"]));
 
-	//$usuario->atualizarUsuiario();
+	$usuario->atualizar();
 	header("location:usuarios.php");
 
 	
