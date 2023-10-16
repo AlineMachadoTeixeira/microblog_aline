@@ -41,7 +41,7 @@ class Usuario{
     return password_hash($senha, PASSWORD_DEFAULT);
    }
 
-   //Select de usuarios
+   //Select de usuários listar
    public function listar():array {
     $sql = "SELECT * FROM usuarios ORDER BY nome";
 
@@ -55,6 +55,23 @@ class Usuario{
     return $resultado;
    }//Fim do listar
 
+
+   //Select de usuário listarUm
+   public function listarUm():array {
+    $sql = "SELECT * FROM usuarios WHERE id = :id";
+
+    try{
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+        $consulta->execute();
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+    }catch (Exception $erro){
+     die ("Erro ao carregar dados" . $erro->getMessage());
+    }
+
+    return $resultado;
+   }
 
 
 
