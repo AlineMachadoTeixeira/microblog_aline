@@ -50,13 +50,13 @@ $listaDeUsuarios = $usuario->listar();
 						
 							<a class="btn btn-danger excluir" 
 							href="usuario-exclui.php?id=<?=$itemUsuario["id"]?>">
-							<i class="bi bi-trash"></i> Excluir
+							<i class="bi bi-trash  "></i> Excluir
 							</a>
 						</td>
 					</tr>
 
 				<?php } ?> 
-
+				
 				</tbody>                
 			</table>
 	</div>

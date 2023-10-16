@@ -65,7 +65,7 @@ class Usuario{
      die ("Erro ao listar usuários:" . $erro->getMessage());
     }
     return $resultado;
-   }//Fim do listar
+   }//Fim do ler banco listar
 
 
    //Select de usuário listarUm
@@ -83,7 +83,7 @@ class Usuario{
     }
 
     return $resultado;
-   }
+   } //Fim usuário ler listarUm
 
    //
    public function atualizarUsuiario():void {
@@ -117,6 +117,22 @@ class Usuario{
 
         
 
+   } //Fim do atualizar usuario
+
+
+   // DELETE de usuario 
+   public function excluir():void {
+    $sql = "DELETE FROM usuarios WHERE id = :id";
+
+    try{
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+        $consulta->execute();
+
+    }catch (Exception $erro){
+     die ("Erro ao excluir usuário:" . $erro->getMessage());
+    }
    }
 
 
