@@ -8,7 +8,8 @@ require_once "inc/cabecalho.php";
 /* Programação das mensagens de feedback (campos obrigatórios, dados incorretos, saiu do sistema etc ) */
 if(isset($_GET["campos_obrigatorios"])){
 	$feedback = "Preenchar e-mail e senha!";
-}
+}elseif(isset($_GET['dados_incorretos']))
+    $feedback = "E-mail do usuário ou senha incorreto. Tente novamente.!";
 ?>
 
 
@@ -46,15 +47,29 @@ if(isset($_POST['entrar'])){
 		$usuario->setEmail($_POST['email']);
 
 		//Buscar o usuário/e-mail no Banco de Dados 
-		$dados = $usuario->buscar(); // $dados = $usuario foi o nome que usamos na usuario.php
-		Utilitarios::dump($dados);
+		$dados = $usuario->buscar(); // $dados = $usuario foi o nome que usamos na usuario.php		
 
 		//Se não existir o usuário/e-mail, continuará em login.php
+		if(!$dados) { //ou pode fazer assim if($dados === false)
+			header("location:login.php?dados_incorretos");
+		}else{
+			// Se existir:
+			// - Verificar a senha
+			if(password_verify($_POST['senha'], $dados['senha'])){
+				// - Está correta? Iniciar o processo de login
+				$sessao = new ControleDeAcesso;
+				$sessao->login($dados['id'], $dados['nome'], $dados['tipo']);
+				header("location:admin/index.php");
+			}else{
+				// - Não está? Continuará em login.php
+				header("location:login.php?dados_incorretos");
 
-		// Se existir:
-		// - Verificar a senha
-		// - Está correta? Iniciar o processo de login
-		// - Não está? Continuará em login.php
+
+			}		
+			
+		}
+
+		
 		
 		
 	}
