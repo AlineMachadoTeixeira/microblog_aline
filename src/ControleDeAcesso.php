@@ -15,7 +15,7 @@ namespace Microblog;
         if( !isset($_SESSION['id'])){
             /* ...então destrua qualquer resquício de sesão, redirecione para o formulário de login e pare completamente o script */
             session_destroy();
-            header("location:../login.php");
+            header("location:../login.php?acesso_proibido");
             die(); // ou exit;
         } 
 
@@ -29,4 +29,10 @@ namespace Microblog;
 
     }
     
+    public function logout():void {
+        session_start();
+        session_destroy();
+        header("location:../login.php?logout");
+        die();
+    }
 }
