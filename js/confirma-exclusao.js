@@ -18,7 +18,7 @@ for(const link of links){
 
         /* Usando um confirm() para capturar a resposta do usuário,
         que pode ser OK/Sim (true) ou Cancelar/Não (false) */
-        let resposta = confirm("Deseja realmente excluir este registro?");
+        let resposta = confirm("Deseja realmente excluir o usuario?");
         
         /* Se a resposta for true, então redirecionamos
         para o destino original de cada link, ou seja, para a página

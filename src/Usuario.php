@@ -86,9 +86,7 @@ class Usuario{
    } //Fim usuário ler listarUm
 
    //
-   public function atualizarUsuiario():void {
-
-   } //Fim usuário listarUm
+   
 
 
    //UPDATE DE Usuario 
