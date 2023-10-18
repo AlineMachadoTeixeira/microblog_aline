@@ -1,5 +1,12 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+//require_once "../vendor/autoload.php"; Não colocamos, pois já esta no cabeçalho 
+use Microblog\Categoria;
+$categoria = new Categoria; 
+ 
+
+
+
 ?>
 
 

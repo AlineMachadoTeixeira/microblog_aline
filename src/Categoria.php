@@ -2,12 +2,30 @@
 namespace Microblog;
 use PDO, Exception;
 
-class Categoria{
+class Categoria {
     private int $id;
     private string $nome;
     private PDO $conexao;
 
-      
+    public function __construct(){
+        $this->conexao = Banco::conecta();        
+    }  
+
+    //Inserir Categoria 
+    public function inserir():void{
+        $sql = "INSERT INTO categorias(nome) VALUES (:nome)";
+
+        try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+
+            $consulta->execute();
+
+        }catch (Exception $erro){
+         die ("Erro ao inserir categorias:" . $erro->getMessage());
+        }
+
+    }
 
 
 
