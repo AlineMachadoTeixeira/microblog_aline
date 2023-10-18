@@ -180,7 +180,7 @@ class Usuario{
     }    
     public function setId(int $id): self
     {
-        $this->id = $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);;
+        $this->id = $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
         return $this;
     }
