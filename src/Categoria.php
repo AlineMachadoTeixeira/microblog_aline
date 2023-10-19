@@ -25,6 +25,24 @@ class Categoria {
          die ("Erro ao inserir categorias:" . $erro->getMessage());
         }
 
+    } //Fim do Inserir Categoria
+
+    //Lista/Ler Categoria  Select 
+    public function listarCategorias():array {
+        $sql = "SELECT * FROM categorias ORDER BY nome";
+
+        try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch (Exception $erro){
+         die ("Erro ao listar categoria:" . $erro->getMessage());
+        }
+
+        return $resultado;
+
+
     }
 
 

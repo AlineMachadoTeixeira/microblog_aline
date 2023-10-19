@@ -3,7 +3,8 @@ require_once "../inc/cabecalho-admin.php";
 //require_once "../vendor/autoload.php"; Não colocamos, pois já esta no cabeçalho 
 use Microblog\Categoria;
 $categoria = new Categoria; 
- 
+
+$listarDeCategorias = $categoria->listarCategorias();
 
 
 
@@ -34,10 +35,13 @@ $categoria = new Categoria;
 				</thead>
 
 				<tbody>
+				    <?php foreach($listarDeCategorias as $itemCategoria){?>
 
 					<tr>
-						<td> Nome... </td>
+						<td> <?=$itemCategoria["nome"]?></td>
 						<td class="text-center">
+
+						
 							<a class="btn btn-warning" 
 							href="categoria-atualiza.php">
 							<i class="bi bi-pencil"></i> Atualizar
@@ -49,6 +53,8 @@ $categoria = new Categoria;
 							</a>
 						</td>
 					</tr>
+
+					<?php } ?>					
 
 				</tbody>                
 			</table>

@@ -77,7 +77,7 @@ class Usuario{
     }
    }
 
-   //Select de usuários listar
+   //Select de usuários listar 
    public function listar():array {
     $sql = "SELECT * FROM usuarios ORDER BY nome";
 
