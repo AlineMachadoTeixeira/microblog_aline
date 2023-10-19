@@ -28,7 +28,7 @@ class Categoria {
     } //Fim do Inserir Categoria
 
     //Lista/Ler Categoria  Select 
-    public function listarCategorias():array {
+    public function listarCategoria():array {
         $sql = "SELECT * FROM categorias ORDER BY nome";
 
         try{
@@ -43,7 +43,25 @@ class Categoria {
         return $resultado;
 
 
+    }// Fim Lista/Ler Categoria
+
+   //ListaUm/LerUm Categoria  Select
+   public function listarUmaCategoria():array {
+    $sql = "SELECT * FROM categorias WHERE id = :id";
+
+    try{
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+        $consulta->execute();
+        $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+    }catch (Exception $erro){
+     die ("Erro ao carregar dados" . $erro->getMessage());
     }
+
+    return $resultado;
+   } //Fim ListaUm/LerUm Categoria
+
 
 
 

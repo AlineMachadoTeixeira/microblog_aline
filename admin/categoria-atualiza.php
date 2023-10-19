@@ -1,5 +1,12 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+use Microblog\Categoria;
+
+$categoria = new Categoria;
+
+// ListaUm/LerUm Categoria
+$categoria->setId($_GET['id']);
+$dados = $categoria->listarUmaCategoria();
 ?>
 
 

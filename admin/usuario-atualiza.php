@@ -46,7 +46,7 @@ if(isset($_POST['atualizar'])){
 		
 		<h2 class="text-center">
 		Atualizar dados do usuário
-		</h2>
+		</h2>categoria
 				
 		<form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar">
 

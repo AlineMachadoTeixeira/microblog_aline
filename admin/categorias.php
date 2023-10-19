@@ -4,7 +4,7 @@ require_once "../inc/cabecalho-admin.php";
 use Microblog\Categoria;
 $categoria = new Categoria; 
 
-$listarDeCategorias = $categoria->listarCategorias();
+$listarDeCategorias = $categoria->listarCategoria();
 
 
 
