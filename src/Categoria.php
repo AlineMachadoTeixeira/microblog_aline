@@ -29,7 +29,7 @@ class Categoria {
 
     //Lista/Ler Categoria  Select 
     public function listarCategoria():array {
-        $sql = "SELECT * FROM categorias ORDER BY nome";
+        $sql = "SELECT * FROM categorias ";  //ORDER BY nome não coloquei
 
         try{
             $consulta = $this->conexao->prepare($sql);
@@ -56,11 +56,54 @@ class Categoria {
         $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
     }catch (Exception $erro){
-     die ("Erro ao carregar dados" . $erro->getMessage());
+     die ("Erro ao carregar dados da categoria" . $erro->getMessage());
     }
 
     return $resultado;
    } //Fim ListaUm/LerUm Categoria
+
+
+   //UPDATE DE Atualizar Categoria 
+   public function atualizarCategorias():void{
+    $sql = "UPDATE categorias SET
+            nome = :nome             
+            WHERE id = :id";
+
+        try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":nome", $this->nome, PDO::PARAM_STR);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);    
+            
+
+            $consulta->execute();
+           
+
+        }catch (Exception $erro){
+        die ("Erro ao atualizar categoria" . $erro->getMessage());
+        }
+
+        
+
+   } //Fim do atualizar usuario
+
+   //Excluir DELETE Categoria
+   public function excluirCategoria():void {
+    $sql = "DELETE FROM categorias WHERE id = :id";
+
+    try{
+        $consulta = $this->conexao->prepare($sql);
+        $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+        $consulta->execute();
+
+    }catch (Exception $erro){
+     die ("Erro ao excluir usuário:" . $erro->getMessage());
+    }
+
+   } // Fim do excluir Categoria
+
+
+  
 
 
 
@@ -86,7 +129,7 @@ class Categoria {
     }    
     public function setId(int $id): self
     {
-        $this->id = $this->id = $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $this->id = $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
         return $this;
     }

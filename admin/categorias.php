@@ -2,8 +2,13 @@
 require_once "../inc/cabecalho-admin.php";
 //require_once "../vendor/autoload.php"; Não colocamos, pois já esta no cabeçalho 
 use Microblog\Categoria;
-$categoria = new Categoria; 
 
+/* Verificando se quem está acessando esta pagina pode acessar (se o if do método abaixo for TRUE, ENTÃO Significa que o usuario NÃO É um admin e portanto está página não será autorizada para uso) */
+$sessao->verificarAcessoAdmin();
+
+
+
+$categoria = new Categoria; 
 $listarDeCategorias = $categoria->listarCategoria();
 
 
@@ -15,7 +20,7 @@ $listarDeCategorias = $categoria->listarCategoria();
 	<article class="col-12 bg-white rounded shadow my-1 py-4">
 		
 		<h2 class="text-center">
-		Categorias <span class="badge bg-dark">X</span>
+		Categorias <span class="badge bg-dark"><?=count($listarDeCategorias)?></span>
 		</h2>
 
 		<p class="text-center mt-5">
@@ -43,12 +48,12 @@ $listarDeCategorias = $categoria->listarCategoria();
 
 						
 							<a class="btn btn-warning" 
-							href="categoria-atualiza.php">
+							href="categoria-atualiza.php?id=<?=$itemCategoria["id"]?>">
 							<i class="bi bi-pencil"></i> Atualizar
 							</a>
 						
 							<a class="btn btn-danger excluir" 
-							href="categoria-exclui.php">
+							href="categoria-exclui.php?id=<?=$itemCategoria["id"]?>">
 							<i class="bi bi-trash"></i> Excluir
 							</a>
 						</td>

@@ -131,7 +131,7 @@ class Usuario{
             $consulta->bindValue(":tipo", $this->tipo, PDO::PARAM_STR);
 
             $consulta->execute();
-            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+            // $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
         }catch (Exception $erro){
         die ("Erro ao atualizar usuário" . $erro->getMessage());
