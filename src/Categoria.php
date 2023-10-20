@@ -2,7 +2,7 @@
 namespace Microblog;
 use PDO, Exception;
 
-class Categoria {
+final class Categoria {
     private int $id;
     private string $nome;
     private PDO $conexao;
@@ -100,20 +100,7 @@ class Categoria {
      die ("Erro ao excluir usuário:" . $erro->getMessage());
     }
 
-   } // Fim do excluir Categoria
-
-
-  
-
-
-
-
-
-
-
-
-
-
+   } // Fim do excluir Categoria 
 
 
 

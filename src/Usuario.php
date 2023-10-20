@@ -206,7 +206,7 @@ class Usuario{
     }    
     public function setEmail(string $email): self
     {
-        $this->email = $this->email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
+        $this->email = $this->email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
         return $this;
     }
