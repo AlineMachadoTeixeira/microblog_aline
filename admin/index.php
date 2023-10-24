@@ -1,5 +1,7 @@
 <?php 
 require_once "../inc/cabecalho-admin.php";
+
+var_dump($_SESSION["id"])
 ?>
 
 
