@@ -2,9 +2,11 @@
 require_once "../inc/cabecalho-admin.php";
 use Microblog\Noticia;
 use Microblog\Utilitarios;
+use Microblog\Categoria;
+//Utilitarios::dump($noticia); É assim que usamos o var_dump da classe utilitario 
 
-$noticia = new Noticia;
-Utilitarios::dump($noticia);
+$categoria = new Categoria; 
+$listarDeCategorias = $categoria->listarCategoria();
 ?>
 
 
@@ -21,9 +23,10 @@ Utilitarios::dump($noticia);
                 <label class="form-label" for="categoria">Categoria:</label>
                 <select class="form-select" name="categoria" id="categoria" required>
 					<option value=""></option>
-					<option value="1">Ciência</option>
-					<option value="2">Educação</option>
-					<option value="3">Tecnologia</option>
+					<?php foreach($listarDeCategorias as $itemCategoria){?>
+					<option value="<?=$itemCategoria['id']?>"><?=$itemCategoria["nome"]?></option>
+					<?php } ?>
+					
 				</select>
 			</div>
 
