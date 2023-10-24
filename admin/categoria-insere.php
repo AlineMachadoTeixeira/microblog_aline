@@ -2,6 +2,7 @@
 require_once "../inc/cabecalho-admin.php";
 use Microblog\Categoria;
 
+
 /* Verificando se quem está acessando esta pagina pode acessar (se o if do método abaixo for TRUE, ENTÃO Significa que o usuario NÃO É um admin e portanto está página não será autorizada para uso) */
 $sessao->verificarAcessoAdmin();
 
