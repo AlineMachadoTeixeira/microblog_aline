@@ -5,13 +5,32 @@ use Microblog\Utilitarios;
 use Microblog\Categoria;
 //Utilitarios::dump($noticia); É assim que usamos o var_dump da classe utilitario 
 
+//Fazendo para puxar a lista de categoria 
 $categoria = new Categoria; 
 $listarDeCategorias = $categoria->listarCategoria();
-
 
 // Fazendo a mesma coisa de cima porem sem o foreach no  option veja a versão do professor para puxar a lista de noticias 
 //noticia = new Noticia;
 //$listarDeCategorias = $noticia->$categoria->listarCategoria();
+
+
+if(isset ($_POST["inserir"])){
+	$noticia = new Noticia;
+	$noticia->setTitulo($_POST["titulo"]);
+	$noticia->setTexto($_POST["texto"]);
+	$noticia->setResumo($_POST["resumo"]);
+	$noticia->setDestaque($_POST["destaque"]);
+	
+	//ID do usuário que está inserindo a noticia
+	$noticia->usuario->setId($_SESSION["id"]);	
+
+	//ID da categoria escolhida para a noticia 
+	$noticia->categoria->setId($_POST['categoria']);	
+
+	/* Sobre a imagem 
+	- Capturar o arquivo de imagem e enviar para o servidor
+	- Capturar o nome/extenção e enviar para o banco de dados  */
+}
 
 
 ?>
