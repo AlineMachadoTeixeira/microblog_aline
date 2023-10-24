@@ -7,6 +7,13 @@ use Microblog\Categoria;
 
 $categoria = new Categoria; 
 $listarDeCategorias = $categoria->listarCategoria();
+
+
+// Fazendo a mesma coisa de cima porem sem o foreach no  option veja a versão do professor para puxar a lista de noticias 
+//noticia = new Noticia;
+//$listarDeCategorias = $noticia->$categoria->listarCategoria();
+
+
 ?>
 
 
@@ -23,6 +30,7 @@ $listarDeCategorias = $categoria->listarCategoria();
                 <label class="form-label" for="categoria">Categoria:</label>
                 <select class="form-select" name="categoria" id="categoria" required>
 					<option value=""></option>
+
 					<?php foreach($listarDeCategorias as $itemCategoria){?>
 					<option value="<?=$itemCategoria['id']?>"><?=$itemCategoria["nome"]?></option>
 					<?php } ?>
