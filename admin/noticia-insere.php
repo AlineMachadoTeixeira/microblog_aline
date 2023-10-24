@@ -30,6 +30,11 @@ if(isset ($_POST["inserir"])){
 	/* Sobre a imagem 
 	- Capturar o arquivo de imagem e enviar para o servidor
 	- Capturar o nome/extenção e enviar para o banco de dados  */
+	$imagem = $_FILES["imagem"];
+	Utilitarios::dump($imagem);
+
+
+
 }
 
 

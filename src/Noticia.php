@@ -48,7 +48,44 @@ final class Noticia {
             die ("Erro ao inserir notícia:" . $erro->getMessage());
    }
                 
+   }
+
+    /* Método para upload de foto */ 
+    public function upload(array $arquivo):void{
+
+        //Definindo os tipos válidos de foto o mesmo tipo que colocamos no formulario
+        $tiposValidos = [
+            "image/png",
+            "image/jpeg",
+            "image/gif",
+            "image/svg+xml"
+        ];
+
+        // Verificando se o arquivo NÃO É um dos tipos válidos 
+        if (!in_array($arquivo["type"], $tiposValidos)){
+            //Alertamos o usuario e o fazemos voltar para o form.
+            die("
+                <script>
+                alert('Formato inválido!');
+                history.back();
+                </script>
+            ");
+        }
+
+        //Acessando APENAS o nome/extensão do arquivo 
+        $nome = $arquivo["name"];
+
+        //Acessando os dados de acesso/armazenamento temporários
+        $temporario = $arquivo["tmp_name"];
+
+        //Definindo a pasta de destino das imagens no site 
+        $pastaFinal = "../imagens/".$nome;
+
+        //Movemos/enviamos da área temporária para a final/destino
+        move_uploaded_file($temporario, $pastaFinal);
     }
+
+
     
 
 
