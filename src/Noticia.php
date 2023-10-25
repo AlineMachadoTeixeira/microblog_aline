@@ -50,6 +50,37 @@ final class Noticia {
                 
    }
 
+   public function listar():array{
+
+      /*Se o tipo de usuário logado for admin...()*/
+      if($this->usuario->getTipo() === "admin" ){
+        //SQL para o usuário ADMIN (pega tudo de todos)
+        $sql = "SELECT 
+                     noticias.id,
+                     noticias.titulo, 
+                     noticias.data, 
+                     usuarios.nome AS autor,
+                     noticias.destaque
+                 FROM noticias INNER JOIN usuarios
+                 ON noticias.usuario_id = usuarios.id
+                 ORDER BY data DESC ";
+
+      }else{
+            /* SQL para o usuário EDITOR (pega somente ao dados referente ao editor)
+            (pode ver DELE APENAS: titulo, data, destaque id da notícia) */ 
+            $sql = "SELECT id, titulo, data, destaque
+                    FROM noticias WHERE usuario_id = :usuario_id
+                    ORDER BY data DESC";
+
+      }
+
+        
+
+        
+   }
+
+
+
     /* Método para upload de foto */ 
     public function upload(array $arquivo):void{
 
@@ -84,6 +115,8 @@ final class Noticia {
         //Movemos/enviamos da área temporária para a final/destino
         move_uploaded_file($temporario, $pastaFinal);
     }
+
+
 
 
     
