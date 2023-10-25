@@ -95,6 +95,36 @@ final class Noticia {
    } // Final listar
 
 
+   public function listarUm():array{
+        // Carrega dados de qualquer noticia de qualquer pessoa
+        if($this->usuario->getTipo() === "admin"){
+            $sql = "SELECT * FROM noticias WHERE id = :id";
+
+        // Carrega dados de qualquer noticia DELE/DELA
+        }else{
+            $sql = "SELECT * FROM noticias WHERE id = :id AND usuario_id = :usuario_id";
+
+        }
+
+        try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":id", $this->id, PDO::PARAM_INT);
+
+            
+            if($this->usuario->getTipo() !== "admin" ){
+               $consulta->bindValue(":usuario_id", $this->usuario->getId(), PDO::PARAM_INT);
+            }
+
+            $consulta->execute();
+            
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+        }catch (Exception $erro){
+            die ("Erro ao carregar notícias:" . $erro->getMessage());
+        }
+            return $resultado;
+   }
+
+
 
     /* Método para upload de foto */ 
     public function upload(array $arquivo):void{
