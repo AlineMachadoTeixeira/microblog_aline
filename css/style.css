@@ -15,3 +15,8 @@
     background-color: white;
     color: black;
 }
+
+.ajusta-texto{
+    /* Espaço em branco */
+    white-space: pre-wrap;
+}
