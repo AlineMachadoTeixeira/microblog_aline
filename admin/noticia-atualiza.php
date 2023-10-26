@@ -21,7 +21,7 @@ if(isset($_POST["atualizar"])){
     $noticia->setTexto($_POST["texto"]);
     $noticia->setResumo($_POST["resumo"]);
     $noticia->setDestaque($_POST["destaque"]);
-    $noticia->categoria->setId($_POST["caregoria"]);
+    $noticia->categoria->setId($_POST["categoria"]);
    
 
     /* Lógica/Algoritmo para atualizar a foto (se necessário) */
@@ -32,9 +32,12 @@ if(isset($_POST["atualizar"])){
 
     }else{
          /* Caso contrário, vamos pegar a referência (nome/extensão) da nova imagem, fazer o ipload do novo arquivo e enviar a referência para o objeto usando setter.*/
-         $noticia->upload($_FILES["imagme"]);
+         $noticia->upload($_FILES["imagem"]);
          $noticia->setImagem($_FILES["imagem"]["name"]);     
     }
+
+    $noticia->atualizar();
+    header("location:noticias.php");
 }
 ?>
 
@@ -95,7 +98,7 @@ if(isset($_POST["atualizar"])){
                 <p>Deixar a notícia em destaque?
                     <input 
                     <?php if($dados["destaque"] === "nao") echo "checked "?>
-                    type="radio" class="btn-check" name="destaque" id="nao" autocomplete="off" checked value="nao">
+                    type="radio" class="btn-check" name="destaque" id="nao" autocomplete="off"  value="nao">
                     <label class="btn btn-outline-danger" for="nao">Não</label>
 
                     <input 
