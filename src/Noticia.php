@@ -225,6 +225,30 @@ public function excluir():void {
     }
 
 
+    /* ========== Métodos para área pública ========== */
+
+    //index.php que está na raiz 
+    public function listarDestaques():array{
+        $sql = "SELECT id, titulo, resumo, imagem FROM noticias
+                WHERE destaque = :destaque ORDER BY data DESC";
+
+        try{
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->bindValue(":destaque", $this->destaque, PDO::PARAM_STR);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        }catch (Exception $erro){
+        die ("Erro ao carregar destaque" . $erro->getMessage());
+        }
+
+        return $resultado;
+                
+    }
+
+
+
+    
 
 
     
