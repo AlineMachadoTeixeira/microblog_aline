@@ -14,4 +14,7 @@
 
 </body>
 </html>
-<?php ob_end_flush(); ?>
+<?php 
+/* Finalizar o Output Buffere (gerenciamento de memória de saída) */
+ob_end_flush(); 
+?>
