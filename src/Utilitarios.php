@@ -11,6 +11,14 @@ abstract class Utilitarios {
 
     }
 
+    //  2023-10-27 10:56
+    public static function formataData(string $data):string {
+        return date ("d/m/Y H:i", strtotime($data));
+
+        // 27-42-
+
+    }
+
 }
 
 // public static function dump( $dados):void  se não é o php 7.4 faz assim
