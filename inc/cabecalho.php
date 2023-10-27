@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once "vendor/autoload.php";
 use Microblog\Noticia;
 $noticia = new Noticia;
