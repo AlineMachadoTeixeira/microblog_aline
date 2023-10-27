@@ -298,7 +298,7 @@ public function excluir():void {
     }
 
      /// Noticias-por-categoria.php na raiz
-    public function listarPorCategoria():array{
+    public function listarPorCategoria():array{ 
         $sql = "SELECT 
                    noticias.id,  
                    noticias.titulo, 
