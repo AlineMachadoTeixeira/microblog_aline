@@ -12,7 +12,16 @@ $dados = $noticia->listarPorCategoria();
 <div class="row my-1 mx-md-n1">
 
     <article class="col-12">
-        <h2 class=" ">Notícias sobre <span class="badge bg-primary">categoria</span> </h2>
+        <?php if(count($dados) > 0){?>
+            <h2 class=" text-center"> 
+                Notícias sobre <span class="badge bg-primary"><?=$dados[0]['categoria']?></span> 
+            </h2>
+        <?php } else {?>
+            <h2 class=" alert alert-warning text-center"> 
+                Não há noticias desta categoria
+            </h2> 
+
+        <?php }?>
         
         <div class="row my-1">
             <div class="col-12 px-md-1">
