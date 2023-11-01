@@ -65,10 +65,12 @@ $listaDeCategorias = $noticia->categoria->listarCategoria();
               <input id="busca" name="busca" class="form-control me-2" type="search" placeholder="Pesquise aqui" aria-label="Pesquise aqui">
               <!-- <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">OK</button> -->
 
-              <div id="resultados"   class="mt-3 position-absolute container bg-white shadow-lg p-3 rounded">
+              
+            </form>
+            
+            <div id="resultados"   class="mt-3 position-absolute container bg-white shadow-lg p-3 rounded">
                
               </div>
-            </form>
 
           </div>
         </div>
